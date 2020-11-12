@@ -5,14 +5,14 @@ const app = express()
 const { pool } = require('./db')
 const axios = require('axios')
 
-app.get('/save-random-image/:bread', async (req, res) => {
+app.get('/save-random-image/:breed', async (req, res) => {
 
-  const bread = req.params.bread
-  const randomImageUrl = await urlForRandomImageByBread(bread)
+  const breed = req.params.breed
+  const randomImageUrl = await urlForRandomImageBybreed(breed)
   const base64Image = await getBase64Image(randomImageUrl)
 
   const client = await pool.connect()
-  const result = await client.query(`INSERT INTO public.dog_images(base64image, bread) VALUES ($1, $2) RETURNING id, base64image, bread;`, [base64Image, bread])
+  const result = await client.query(`INSERT INTO public.dog_images(base64image, breed) VALUES ($1, $2) RETURNING id, base64image, breed;`, [base64Image, breed])
   client.release()
 
   res.status(201).json({ 
@@ -25,8 +25,8 @@ app.get('/save-random-image/:bread', async (req, res) => {
 /**
  * Helper functions
  */
-const urlForRandomImageByBread = async (bread) => {
-  const url = `https://dog.ceo/api/breed/${bread}/images/random`
+const urlForRandomImageBybreed = async (breed) => {
+  const url = `https://dog.ceo/api/breed/${breed}/images/random`
   const response = await axios.get(url)
   return response.data.message
 }

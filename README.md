@@ -13,4 +13,4 @@
 * `npm run test` to run tests
 
 ### Routes
-- `{stage}/save-random-image/{bread}`
+- `{stage}/save-random-image/{breed}`

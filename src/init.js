@@ -7,7 +7,7 @@ module.exports.init = async () => {
   (
       id serial primary key,
       base64image text NOT NULL,
-      bread character varying(100) NOT NULL,
+      breed character varying(100) NOT NULL,
       created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   ) 
   `)

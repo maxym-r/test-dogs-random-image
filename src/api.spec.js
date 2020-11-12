@@ -21,7 +21,7 @@ describe('API', () => {
           expect.objectContaining({
             id: expect.any(Number),
             base64image: expect.any(String),
-            bread: expect.any(String),
+            breed: expect.any(String),
           }),
         );
         done()
